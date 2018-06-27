@@ -18,7 +18,7 @@ package:
 functions:
   server:
     handler: bin/server
-    description: Sendsh.it File Transfer
+    description: Backend API for sendsh.it
     environment:
       REGION: ${file(./.env.yml):REGION, env:REGION}
       BUCKET: ${file(./.env.yml):FILE_BUCKET, env:FILE_BUCKET}
@@ -26,33 +26,3 @@ functions:
       - http:
           method: any
           path: /api/{proxy+}
-resources:
-  Resources:
-    ProxyResource:
-      Type: AWS::ApiGateway::Resource
-      Properties:
-        ParentId:
-          Fn::GetAtt:
-            - ApiGatewayRestApi
-            - RootResourceId
-        PathPart: '{proxy+}'
-        RestApiId:
-          Ref: ApiGatewayRestApi
-    ProxyMethod:
-      Type: AWS::ApiGateway::Method
-      Properties:
-        ResourceId:
-          Ref: ProxyResource
-        RestApiId:
-          Ref: ApiGatewayRestApi
-        AuthorizationType: NONE
-        HttpMethod: GET
-        MethodResponses:
-          - StatusCode: 200
-        Integration:
-          IntegrationHttpMethod: GET
-          Type: HTTP_PROXY
-          Uri: 'http://${file(./.env.yml):CLIENT_BUCKET, env:CLIENT_BUCKET}.s3-website-${file(./.env.yml):REGION, env:REGION}.amazonaws.com/{proxy}'
-          PassthroughBehavior: WHEN_NO_MATCH
-          IntegrationResponses:
-            - StatusCode: 200

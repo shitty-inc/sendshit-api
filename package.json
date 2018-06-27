@@ -3,7 +3,7 @@
   "description": "Backend API for sendsh.it",
   "private": true,
   "scripts": {
-    "build": "export GOPATH=~/.go && cd ~/.go/src && make",
+    "build": "cd ~/go/src/api && make",
     "deploy": "AWS_PROFILE=personal sls deploy",
     "start": "sam local start-api --profile personal"
   },
