@@ -1,0 +1,15 @@
+{
+  "name": "api",
+  "description": "Backend API for sendsh.it",
+  "private": true,
+  "scripts": {
+    "build": "export GOPATH=~/.go && cd ~/.go/src && make",
+    "deploy": "AWS_PROFILE=personal sls deploy",
+    "start": "sam local start-api --profile personal"
+  },
+  "author": "Ben Speakman",
+  "license": "MIT",
+  "devDependencies": {
+    "serverless-sam": "0.0.5"
+  }
+}
