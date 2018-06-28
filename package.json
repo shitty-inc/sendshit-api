@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "cd ~/go/src/api && make",
-    "deploy": "AWS_PROFILE=personal sls deploy",
+    "deploy": "AWS_PROFILE=personal sls deploy --stage production",
     "start": "sam local start-api --profile personal"
   },
   "author": "Ben Speakman",
