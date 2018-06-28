@@ -139,8 +139,8 @@ func returnJSON(writer http.ResponseWriter, response interface{}) {
  * Main handler function
  */
 func main() {
-	http.HandleFunc("/api/download", downloadHandler)
-	http.HandleFunc("/api/upload", uploadHandler)
+	http.HandleFunc("/download", downloadHandler)
+	http.HandleFunc("/upload", uploadHandler)
 
 	c := cors.New(cors.Options{
 		AllowedOrigins: []string{"https://sendsh.it", "http://localhost:3000"},
