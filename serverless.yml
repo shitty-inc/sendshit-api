@@ -27,6 +27,8 @@ functions:
       - http:
           method: any
           path: /{proxy+}
+          cors:
+            origin: 'https://sendsh.it'
 resources:
   Resources:
     UploadBucket:
